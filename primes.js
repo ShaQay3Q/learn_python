@@ -6,16 +6,11 @@ function isDivisible(a, b) {
 
 function isPrime(number) {
 	const divisibleCount = [];
-	if (number === 1) {
-		divisibleCount.push(true);
-	} else {
-		for (let i = number; i > 0; i--) {
-			if (isDivisible(number, i)) {
-				divisibleCount.push(true);
-			}
+	for (let i = number; i > 0; i--) {
+		if (isDivisible(number, i)) {
+			divisibleCount.push(true);
 		}
 	}
-
 	if (divisibleCount.length < 3) {
 		return true;
 	}
