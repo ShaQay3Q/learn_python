@@ -11,9 +11,27 @@ const rl = readline.createInterface({
 const isValidInput = (input) => regPattern.test(input.trim());
 const parseInput = (input) => input.split(/\s+/).map(Number);
 
-function findPrimes(numArr) {
+function isDivisible(a, b) {
+	if (a % b === 0) {
+		return true;
+	}
+}
+
+function isPrime(number) {
+	const divisibleCount = [];
+	for (let i = number; i > 0; i--) {
+		if (isDivisible(number, i)) {
+			divisibleCount.push(true);
+		}
+	}
+	if (divisibleCount.length < 3) {
+		return true;
+	}
+}
+
+function findPrimes(numbers) {
 	const primes = [];
-	for (let d of numArr) {
+	for (let d of numbers) {
 		if (d !== 0) {
 			if (isPrime(d)) {
 				primes.push(d);
@@ -61,24 +79,3 @@ const main = async () => {
 };
 
 main();
-
-function isDivisible(a, b) {
-	if (a % b === 0) {
-		return true;
-	}
-}
-
-function isPrime(number) {
-	const divisibleCount = [];
-	for (let i = number; i > 0; i--) {
-		if (isDivisible(number, i)) {
-			divisibleCount.push(true);
-		}
-	}
-	if (divisibleCount.length < 3) {
-		return true;
-	}
-}
-
-// console.log(findPrimes(numbers));
-// console.log(findPrimes([...Array(100).keys()]));
