@@ -16,7 +16,11 @@ const getASetOfNumbers = (question) => {
 			rl.question(question, (answer) => {
 				if (isValidInput) {
 					const numbers = answer.split(" ").map((number) => +number);
-					resolve(findPrimes(numbers));
+					if (findPrimes(numbers)) {
+						resolve(findPrimes(numbers));
+					} else {
+						resolve(console.log("No peimw numbers found!"));
+					}
 				} else {
 					console.log(
 						`Invalid format.
@@ -29,7 +33,6 @@ const getASetOfNumbers = (question) => {
 		askForInput();
 	});
 };
-console.log("input", rl.input.buffer);
 
 // Main async function
 const main = async () => {
@@ -37,9 +40,6 @@ const main = async () => {
 	const numbers = await getASetOfNumbers(
 		"Enter a set of numbers. Seperate them by space: "
 	);
-
-	// Print the result
-	console.log(`Entered numbers: ${numbers}`);
 
 	// Close the readline interface
 	rl.close();
