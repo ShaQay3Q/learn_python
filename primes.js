@@ -1,13 +1,16 @@
 const readline = require("readline");
 const process = require("process");
 
+const regPattern = /^\d+( \d+)*$/;
+// const regPattern = /^\d+(\s+\d+)*$/;
+
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
 const isValidInput = (input) => {
 	// Must only contain digits and single spaces between them (no leading/trailing/multiple spaces)
-	return /^\d+( \d+)*$/.test(input);
+	return regPattern.test(input.trim());
 };
 
 const getASetOfNumbers = (question) => {
@@ -15,11 +18,21 @@ const getASetOfNumbers = (question) => {
 		const askForInput = () => {
 			rl.question(question, (answer) => {
 				if (isValidInput) {
-					const numbers = answer.split(" ").map((number) => +number);
-					if (findPrimes(numbers)) {
-						resolve(findPrimes(numbers));
+					const data = answer.split(" ");
+					const onlyNaNs = data.filter((number) => isNaN(+number));
+					if (onlyNaNs.length) {
+						console.log(`${onlyNaNs[0]} is not a valid number!`);
+						askForInput();
 					} else {
-						resolve(console.log("No peimw numbers found!"));
+						const numbers = answer.split(" ").map((number) => +number);
+						console.log(numbers);
+						console.log(findPrimes(numbers));
+
+						if (!findPrimes(numbers).length) {
+							resolve(console.log("No peimw numbers found!"));
+						} else {
+							resolve(findPrimes(numbers));
+						}
 					}
 				} else {
 					console.log(
@@ -38,7 +51,7 @@ const getASetOfNumbers = (question) => {
 const main = async () => {
 	// Get user input using await
 	const numbers = await getASetOfNumbers(
-		"Enter a set of numbers. Seperate them by space: "
+		"Enter a valid set of numbers. Seperate them by space: "
 	);
 
 	// Close the readline interface
