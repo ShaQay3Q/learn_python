@@ -1,19 +1,35 @@
 const readline = require("readline");
-// const { stdin: input, stdout: output } = require('node:process');
 const process = require("process");
 
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
+const isValidInput = (input) => {
+	// Must only contain digits and single spaces between them (no leading/trailing/multiple spaces)
+	return /^\d+( \d+)*$/.test(input);
+};
 
 const getASetOfNumbers = (question) => {
 	return new Promise((resolve) => {
-		rl.question(question, (answer) => {
-			resolve(answer);
-		});
+		const askForInput = () => {
+			rl.question(question, (answer) => {
+				if (isValidInput) {
+					const numbers = answer.split(" ").map((number) => +number);
+					resolve(findPrimes(numbers));
+				} else {
+					console.log(
+						`Invalid format.
+						Please enter numbers separated by **single spaces**, like: 12 34 56`
+					);
+					askForInput();
+				}
+			});
+		};
+		askForInput();
 	});
 };
+console.log("input", rl.input.buffer);
 
 // Main async function
 const main = async () => {
@@ -30,6 +46,7 @@ const main = async () => {
 };
 
 main();
+// console.log("input", rl.input.buffer);
 
 function isDivisible(a, b) {
 	if (a % b === 0) {
