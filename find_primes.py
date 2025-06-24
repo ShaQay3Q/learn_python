@@ -8,13 +8,12 @@ def is_prime(number):
             prime = False
     return prime
 
-for i in range(1, 10):
-    print(i, is_prime(i))
+for i in range(1, 1001):
+    if is_prime(i):
+        print(i)
 
 # if prime:
 #     print(n, "is prime.")
 # else:
 #     print(n, "is not prime.")
 
-
-print(is_prime(6))

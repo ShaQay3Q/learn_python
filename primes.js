@@ -31,8 +31,6 @@ function isPrime(number) {
 	return prime;
 }
 
-console.log(isPrime(4));
-
 function findPrimes(numbers) {
 	const primes = [];
 	for (let d of numbers) {
@@ -42,6 +40,7 @@ function findPrimes(numbers) {
 	}
 	return primes;
 }
+
 
 const getASetOfNumbers = (question) => {
 	return new Promise((resolve) => {
