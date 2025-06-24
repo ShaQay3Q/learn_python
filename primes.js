@@ -12,21 +12,19 @@ const isValidInput = (input) => regPattern.test(input.trim());
 const parseInput = (input) => input.split(/\s+/).map(Number);
 
 function isDivisible(a, b) {
-	if (a % b === 0) {
+	if (a % b) {
 		return true;
 	}
 }
 
 function isPrime(number) {
-	const divisibleCount = [];
-	for (let i = number; i > 0; i--) {
-		if (isDivisible(number, i)) {
-			divisibleCount.push(true);
+	let prime = true;
+	for (let i = 2; i < number; i++) {
+		if (!isDivisible(number, i)) {
+			prime = false;
 		}
 	}
-	if (divisibleCount.length < 3) {
-		return true;
-	}
+	return prime;
 }
 
 function findPrimes(numbers) {
@@ -52,7 +50,8 @@ const getASetOfNumbers = (question) => {
 					if (primes.length) {
 						resolve(findPrimes(numbers));
 					} else {
-						resolve(console.log("No peime numbers found!"));
+						console.log("No peime numbers found!");
+						resolve([]);
 					}
 				} else {
 					console.log(
@@ -73,7 +72,7 @@ const main = async () => {
 	const numbers = await getASetOfNumbers(
 		"Enter a valid set of numbers. Seperate them by space: "
 	);
-
+	console.log("Prime numbers found:", numbers);
 	// Close the readline interface
 	rl.close();
 };
