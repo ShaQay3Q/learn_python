@@ -18,8 +18,12 @@ function isDivisible(a, b) {
 }
 
 function isPrime(number) {
+	if (number === 0 || (number % 2 === 0 && number !== 2)) {
+		return false;
+	}
 	let prime = true;
-	for (let i = 2; i < number; i++) {
+	let sqrt = Math.sqrt(number);
+	for (let i = 2; i <= sqrt; i++) {
 		if (!isDivisible(number, i)) {
 			prime = false;
 		}
@@ -27,13 +31,13 @@ function isPrime(number) {
 	return prime;
 }
 
+console.log(isPrime(4));
+
 function findPrimes(numbers) {
 	const primes = [];
 	for (let d of numbers) {
-		if (d !== 0) {
-			if (isPrime(d)) {
-				primes.push(d);
-			}
+		if (isPrime(d)) {
+			primes.push(d);
 		}
 	}
 	return primes;
