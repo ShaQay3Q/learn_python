@@ -33,14 +33,18 @@ function isPrime(number) {
 
 function findPrimes(numbers) {
 	const primes = [];
-	for (let d of numbers) {
-		if (isPrime(d)) {
-			primes.push(d);
+	// for (let d of numbers) {
+	// 	if (isPrime(d)) {
+	// 		primes.push(d);
+	// 	}
+	// }
+	for (let i = 1; i <= numbers; i++) {
+		if (isPrime(i)) {
+			primes.push(i);
 		}
 	}
 	return primes;
 }
-
 
 const getASetOfNumbers = (question) => {
 	return new Promise((resolve) => {

@@ -8,9 +8,13 @@ def is_prime(number):
             prime = False
     return prime
 
+count = 0
 for i in range(1, 1001):
     if is_prime(i):
+        count = count + 1
         print(i)
+    
+print(count)
 
 # if prime:
 #     print(n, "is prime.")
