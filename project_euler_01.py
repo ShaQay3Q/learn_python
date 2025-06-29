@@ -39,6 +39,32 @@ print(sum_of_the_divisible_numbers_to_five_and_three(1000))
 #    ALTERNATIVE SOLUTION
 # --------------------------
 
+def is_divisible(number, divisor):
+    if number % divisor == 0:
+        return number
+
+def is_div_fiveandthree(number):
+    if is_divisible(number, 15) or is_divisible (number, 5) or is_divisible(number, 3):
+        print(number)
+        return number
+    else:
+        return 0
+
+def sum_divisible_numbers(number):
+    result = 0
+    for i in range(1, number):
+        if is_div_fiveandthree(i):
+            result = result + i 
+    return result
+
+result = sum_divisible_numbers(10)
+print(result)
+
+
+# --------------------------
+#    ALTERNATIVE SOLUTION
+# --------------------------
+
 def is_div_by_three_and_five(number):
     div15 = number % 15 == 0
     div5 = number % 5 == 0
@@ -63,7 +89,7 @@ def sum_of_the_divisible_numbers(number):
     return result
 
 result = sum_of_the_divisible_numbers(10)
-print(result)
+# print(result)
 
 
 # --------------------------
@@ -88,4 +114,4 @@ def sum_divisible_numbers(number):
     return result
 
 result = sum_divisible_numbers(10)
-print(result)
+# print(result)
