@@ -146,8 +146,10 @@ def sum_div_numbers(number):
         arithmetic_sum(15, number)
     )
 
-number = 100000000
+# number = 100000000
+# number = 13195
+number = 100
 
 print(sum_div_numbers(number))
 
-# print(sum_divisible_numbers(number))
+print(sum_divisible_numbers(number))

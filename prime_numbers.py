@@ -18,4 +18,24 @@ def find_primes(numbers):
                 primes.append(n)
     return primes
 # range(1, 1001)
-print(find_primes(range(100)))
+# number = 100
+number = 13195
+# print(find_primes(range(number)))
+
+prime_factors = []
+
+def find_a_prime(numbers):
+
+    # primes = []
+    for n in range(1, numbers):
+        if n != 1:
+            if is_prime(n):
+                if numbers % n == 0:
+                    prime_factors.append(n)
+                    return int(abs(number / n))
+    
+    # return primes
+
+print(find_a_prime(number))
+
+print(prime_factors)
